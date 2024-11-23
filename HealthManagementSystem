@@ -1,0 +1,56 @@
+import java.util.Scanner;
+
+public class HealthManagementSystem {
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        // Collect user information
+        System.out.print("Enter your name: ");
+        String name = scanner.nextLine();
+
+        System.out.print("Enter your age: ");
+        int age = scanner.nextInt();
+
+        System.out.print("Enter your weight (in kg): ");
+        double weight = scanner.nextDouble();
+
+        System.out.print("Enter your height (in meters): ");
+        double height = scanner.nextDouble();
+
+        // Calculate BMI
+        double bmi = calculateBMI(weight, height);
+
+        // Determine fitness
+        String fitnessStatus = determineFitness(bmi);
+
+        // Display results
+        System.out.println("\n--- Health Report ---");
+        System.out.println("Name: " + name);
+        System.out.println("Age: " + age);
+        System.out.println("Weight: " + weight + " kg");
+        System.out.println("Height: " + height + " meters");
+        System.out.printf("BMI: %.2f\n", bmi);
+        System.out.println("Fitness Status: " + fitnessStatus);
+
+        scanner.close();
+    }
+
+    // Method to calculate BMI
+    public static double calculateBMI(double weight, double height) {
+        return weight / (height * height);
+    }
+
+    // Method to determine fitness based on BMI
+    public static String determineFitness(double bmi) {
+        if (bmi < 18.5) {
+            return "Underweight";
+        } else if (bmi >= 18.5 && bmi <= 24.9) {
+            return "Fit (Normal weight)";
+        } else if (bmi >= 25 && bmi <= 29.9) {
+            return "Overweight";
+        } else {
+            return "Obese";
+        }
+    }
+}
